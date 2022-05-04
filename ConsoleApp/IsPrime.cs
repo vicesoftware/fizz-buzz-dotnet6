@@ -6,12 +6,19 @@ namespace ViceSoftware.Services
     {
         public bool IsPrime(int candidate)
         {
-            if (candidate == 1)
-            {
-                return false;
-            }
-            
-            throw new NotImplementedException("Not fully implemented.");
+            int i;  
+            for (i = 2; i <= candidate - 1; i++)  
+            {  
+                if (candidate % i == 0)  
+                {  
+                    return false;  
+                }  
+            }  
+            if (i == candidate)  
+            {  
+                return true;  
+            }  
+            return false;
         }
     }
 }
