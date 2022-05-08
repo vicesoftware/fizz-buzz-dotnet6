@@ -1,4 +1,6 @@
 ﻿using System;
+using FizzBuzz;
+using ViceSoftware.Services;
 
 namespace ViceSoftware // Note: actual namespace depends on the project name.
 {
@@ -6,28 +8,12 @@ namespace ViceSoftware // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            foreach (var arg in args) {
-                var input = int.Parse(arg);
-                var match = false;
-
-                if (input%3 == 0) {
-                    Console.Write("Fizz");
-                    match = true;
-                } 
-                
-                if (input%5 == 0) {
-                    Console.Write("Buzz");
-                    match = true;
-                } 
-                
-                if (!match) {
-                    Console.Write(input);
-                }
-
-                Console.Write("\n");
+            var fb = new FizzBuzzer();
+            var s = new ViceSoftware.Services.PrimeService();
+            var result = fb.doTheFizzBuzz(args, new Func<int, string>[]{s.IsPrime});
+            foreach(var str in result) {
+                Console.Write(str + "\n");
             }
-
-            Console.WriteLine("Messages processed: " + args.Length);
         }
     }
 }
